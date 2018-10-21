@@ -9,18 +9,18 @@
 
 ## Design
 
-- Front-end: (html + css + javascript) 
-  -- index.html             registration and login buttons
-  -- registration.html      registration page
-  -- login.html             login page
-  -- users.html             list of users and their hyperlinks
-  -- chat_history.html      chat history between two specified users
+* Front-end (html + css + javascript) 
+    * index.html             registration and login buttons
+    * registration.html      registration page
+    * login.html             login page
+    * users.html             list of users and their hyperlinks
+    * chat_history.html      chat history between two specified users
 
-- Back-end:
-  -- application.py         flask application using socket.io
-  -- login.py               login related functionalities
-  -- registration.py        registration related functionalities
-  -- database.py            database related functionalities
+* Back-end
+    * application.py         flask application using socket.io
+    * login.py               login related functionalities
+    * registration.py        registration related functionalities
+    * database.py            database related functionalities
 
 
 ## Database 
@@ -38,7 +38,7 @@ MySQL
     * text
 
 
-## Later:
+## Next:
 - rooms (MongoDB)
 - chat status
 - user status
