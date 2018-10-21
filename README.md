@@ -1,3 +1,4 @@
+
 # Chat Messenger
 
 ## Usage
@@ -24,22 +25,24 @@
 
 ## Database 
 MySQL
-- Users
-  -- user_id
-  -- username
-  -- password
+* Users
+    * user_id
+    * username
+    * password
 
-- Chats
-  -- chat_id
-  -- from_uid
-  -- to_uid
-  -- created_at
-  -- text
+* Chats
+    * chat_id
+    * from_uid
+    * to_uid
+    * created_at
+    * text
 
 
-### Later:
+## Later:
 - rooms (MongoDB)
 - chat status
 - user status
-    
+  
+
+https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md  
 
