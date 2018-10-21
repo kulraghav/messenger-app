@@ -10,21 +10,20 @@
 ## Design
 
 * Front-end (html + css + javascript) 
-    * index.html             registration and login buttons
-    * registration.html      registration page
-    * login.html             login page
-    * users.html             list of users and their hyperlinks
-    * chat_history.html      chat history between two specified users
+    * index.html (registration and login buttons)
+    * registration.html (registration page)
+    * login.html (login page)
+    * users.html (list of users and their hyperlinks)
+    * chat_history.html (chat history between two specified users)
 
-* Back-end
-    * application.py         flask application using socket.io
-    * login.py               login related functionalities
-    * registration.py        registration related functionalities
-    * database.py            database related functionalities
+* Back-end (python + flask)
+    * application.py (flask application using socket.io)
+    * login.py (login related functionalities)
+    * registration.py (registration related functionalities)
+    * database.py (database related functionalities)
 
 
-## Database 
-MySQL
+## Database (MySQL + MongoDB)
 * Users
     * user_id
     * username
