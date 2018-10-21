@@ -2,10 +2,10 @@
 # Chat Messenger
 
 ## Usage
-- Download the folder messenger-app
-- Run the web-app using the following command from folder messenger-app: 
-      -- python application.py
-- Access the web-app at: localhost:5000 (can also be deployed on AWS)
+* Download the folder messenger-app
+* Run the web-app using the following command from folder messenger-app: 
+    * python application.py
+* Access the web-app at: localhost:5000 (can also be deployed on AWS)
 
 ## Design
 
