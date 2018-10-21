@@ -1,27 +1,29 @@
 # Chat Messenger
 
-- main file: application.py
-- usage: 
->> python application.py
-- access point: localhost:5000 (can also be deployed on AWS)
+## Usage
+- Download the folder messenger-app
+- Run the web-app using the following command from folder messenger-app: 
+      -- python application.py
+- Access the web-app at: localhost:5000 (can also be deployed on AWS)
 
-## Basic Design
+## Design
 
 - Front-end: (html + css + javascript) 
-  index.html             registration and login buttons
-  registration.html      registration page
-  login.html             login page
-  users.html             list of users and their hyperlinks
-  chat_history.html      chat history between two specified users
+  -- index.html             registration and login buttons
+  -- registration.html      registration page
+  -- login.html             login page
+  -- users.html             list of users and their hyperlinks
+  -- chat_history.html      chat history between two specified users
 
 - Back-end:
-  application.py         flask application using socket.io
-  login.py               login related functionalities
-  registration.py        registration related functionalities
-  database.py            database related functionalities
+  -- application.py         flask application using socket.io
+  -- login.py               login related functionalities
+  -- registration.py        registration related functionalities
+  -- database.py            database related functionalities
 
 
-## Database Tables (MySQL)
+## Database 
+MySQL
 - Users
   -- user_id
   -- username
