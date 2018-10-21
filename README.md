@@ -23,7 +23,8 @@
     * database.py (database related functionalities)
 
 
-## Database (MySQL + MongoDB)
+## Database 
+MySQL 
 * Users
     * user_id
     * username
