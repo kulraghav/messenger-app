@@ -6,6 +6,7 @@
 
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send, emit
+from database import execute_query
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret_key'
@@ -23,13 +24,16 @@ def register():
         are defined in registration.html
     """
     if request.method == 'POST':
-        username = request.values.get('username') 
-        password = request.values.get('password')
+        username = request.form['username'] 
+        password = request.form['password']
+        print username, password
         """
             register username and password in the MySQL database
         """
-        return "<h1>Sent! Registration: Under Construction</h1>"
-        pass
+	registration_query = "insert into users (username, password) values ('{}', '{}');".format(username, password)
+        execute_query(registration_query)
+        print "Registration Successful!"
+        return render_template('login.html')
     else:
         return render_template('registration.html')
 
@@ -37,17 +41,22 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """                                                                                                                                                                                                     
-        The variables username and password                                                                                                                                                                 
+        The variables username and password                                                                                                                                                                
         are defined in registration.html                                                                                                                                                                    
     """
     if request.method == 'POST':
-        username = request.values.get('username')
-        password = request.values.get('password')
+        username = request.form['username']
+        password = request.form['password']
         """                                                                                                                                                                                                 
             login with username and password                                                                                                                                            
         """
-        return "<h1>Sent! Login: Under Construction</h1>"
-        pass
+        login_query = "select * from users where username = '{}' and password= '{}'".format(username, password)
+	results = execute_query(login_query)
+	if len(results) > 0:
+            print "Login Successful"
+            return render_template("users.html")
+        else:
+            print "Login Failed!!!"
     else:
         return render_template('login.html')
 
@@ -57,5 +66,58 @@ if __name__ == '__main__':
 """
 https://stackoverflow.com/questions/42018603/handling-get-and-post-in-same-flask-view
 
+http://flask.pocoo.org/docs/1.0/quickstart/
+
 https://www.w3schools.com/tags/att_form_method.asp
+
+mysql> create database messenger_app;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use messenger_app;
+Database changed
+
+
+CREATE TABLE users (
+   user_id int(8),
+   username varchar(255),
+   password varchar(255)
+
+);
+
+CREATE TABLE chats (  
+   chat_id int(8),
+   text  varchar(255),                                                                                                                                                                                        from_uid int(8),
+   to_uid int(8),
+   created_at timestamp   
+);
+
+mysql> show tables
+    -> ;
++-------------------------+
+| Tables_in_messenger_app |
++-------------------------+
+| chats                   |
+| users                   |
++-------------------------+
+
+mysql> show columns from users;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| user_id  | int(8)       | YES  |     | NULL    |       |
+| username | varchar(255) | YES  |     | NULL    |       |
+| password | varchar(255) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+
+mysql> show columns from chats
+    -> ;
++------------+--------------+------+-----+-------------------+-----------------------------+
+| Field      | Type         | Null | Key | Default           | Extra                       |
++------------+--------------+------+-----+-------------------+-----------------------------+
+| chat_id    | int(8)       | YES  |     | NULL              |                             |
+| text       | varchar(255) | YES  |     | NULL              |                             |
+| from_uid   | int(8)       | YES  |     | NULL              |                             |
+| to_uid     | int(8)       | YES  |     | NULL              |                             |
+| created_at | timestamp    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
++------------+--------------+------+-----+-------------------+-----------------------------+ 
 """
