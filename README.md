@@ -13,8 +13,8 @@
     * index.html (registration and login buttons)
     * registration.html (registration page)
     * login.html (login page)
-    * users.html (list of users and their hyperlinks)
-    * chat_history.html (chat history between two specified users)
+    * send_message.html (chat history and a text-box to send message)
+   
 
 * Back-end (python + flask)
     * application.py (flask application using socket.io)

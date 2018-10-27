@@ -1,17 +1,17 @@
 """
     Module: application.py
-    Last Update: 21 October 2018
+    Last Update: 27 October 2018
 """
-
 
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send, emit
 from database import execute_query
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret_key'
 app.config['DEBUG'] = True
 socketio = SocketIO(app)
+
+users = {}
 
 @app.route('/', methods=['GET'])
 def index():
@@ -40,42 +40,46 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    """                                                                                                                                                                                                     
+    """                                                                                                                                                                                                    
         The variables username and password                                                                                                                                                                
-        are defined in registration.html                                                                                                                                                                    
+        are defined in registration.html                                                                                                                                                                   
     """
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        """                                                                                                                                                                                                 
-            login with username and password                                                                                                                                            
-        """
+        
         login_query = "select * from users where username = '{}' and password= '{}'".format(username, password)
 	results = execute_query(login_query)
+
 	if len(results) > 0:
             print "Login Successful"
-            return render_template("users.html")
+            return render_template("send_message.html", name=username)
         else:
             print "Login Failed!!!"
     else:
+        
         return render_template('login.html')
+        
+
+@socketio.on('messageFromUser', namespace='/login')
+def receive_message(data):
+        print('Message: {} From: {}'.format(data['message'], data['user']))
+        emit('messageFromServer', data, broadcast=True, namespace='/login')
 
 if __name__ == '__main__':
         socketio.run(app)
 
 """
-https://stackoverflow.com/questions/42018603/handling-get-and-post-in-same-flask-view
-
-http://flask.pocoo.org/docs/1.0/quickstart/
-
-https://www.w3schools.com/tags/att_form_method.asp
+References:
+- https://stackoverflow.com/questions/42018603/handling-get-and-post-in-same-flask-view
+- http://flask.pocoo.org/docs/1.0/quickstart/
+- https://www.w3schools.com/tags/att_form_method.asp
 
 mysql> create database messenger_app;
 Query OK, 1 row affected (0.02 sec)
 
 mysql> use messenger_app;
 Database changed
-
 
 CREATE TABLE users (
    user_id int(8),
@@ -121,3 +125,4 @@ mysql> show columns from chats
 | created_at | timestamp    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
 +------------+--------------+------+-----+-------------------+-----------------------------+ 
 """
+
