@@ -2,10 +2,10 @@
 # Chat Messenger
 
 ## Usage
-* Download the folder messenger-app
-* Run the web-app using the following command from folder messenger-app: 
+* Download: $ git clone  https://github.com/kulraghav/messenger-app.git
+* Run: (from FlaskApp folder on command-line) 
     $ python application.py
-* Access the web-app at: localhost:5000 (can also be deployed on AWS)
+* Access: (from browser) localhost:5000 
 
 
 ## Design
