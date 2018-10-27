@@ -1,0 +1,12 @@
+A simple chat room server:
+https://www.geeksforgeeks.org/simple-chat-room-using-python/
+
+key concepts: 
+- sockets
+- threading
+
+files:
+- server.py
+- client.py
+
+

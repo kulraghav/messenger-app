@@ -25,6 +25,8 @@
 
 * Folder structure
 $ tree
+
+'''
 .
 ├── README.md
 ├── application.py
@@ -41,7 +43,7 @@ $ tree
     └── users.html
 
 1 directory, 12 files
-
+'''
 
 ## Database 
 MySQL 
