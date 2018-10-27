@@ -26,7 +26,7 @@
 * Folder structure
 $ tree
 
-'''
+```bash
 .
 ├── README.md
 ├── application.py
