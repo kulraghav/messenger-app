@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>{{name}}!</title>
+      <title>{{name}}</title>
    </head>
 
    <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-   
-   Hello World! 
  
-   This is {{name}}!
+   <b> {{name}} </b> 
+   <br/>
+   <br/>
    
    <script>
       var socket = io('/login');
@@ -19,12 +19,10 @@
          console.log(document.getElementById('message').value)
          if(msg) {
             socket.emit('messageFromUser', {message: msg, user: user});
-            console.log("finished emit inside sendMessage")
          }
       }
 
       socket.on('messageFromServer', function(data) {
-         console.log("received a message from server");
          if(user) {
             document.getElementById('message-container').innerHTML += '<div><b>' +
                data.user + '</b>: ' + data.message + '</div>'
@@ -33,8 +31,9 @@
    </script>
 
    <body>
+   <div id = "message-container"></div>
    <input type = "text" id = "message">
    <button type = "button" name = "button" onclick = "sendMessage()">Send</button>
-   <div id = "message-container"></div>
+   
    </body>
 </html>
