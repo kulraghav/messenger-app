@@ -86,7 +86,6 @@ CREATE TABLE users (
    user_id int(8),
    username varchar(255),
    password varchar(255)
-
 );
 
 CREATE TABLE chats (  
