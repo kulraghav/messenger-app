@@ -1,0 +1,43 @@
+- add send_to feature
+   -- [send_message.html]
+      """ send 'addUser' signal from client to the server """
+      socket.emit('addUser', {username: '{{name}}'});
+      
+   -- [application.py]
+      users = {username:session_id}
+
+      ...
+
+      """ after receiving 'addUser' signal from client """
+      @socketio.on('addUser', namespace='/login')
+      def add_user(data):
+          session_id = request.sid
+          users[data['username']] = session_id
+
+   -- [send_message.html] 
+      --- add a send_to box
+      --- modify sendMessage(.) function
+          ---- message data = {from: from_user, to: to_user, message: text}    
+
+   -- [application.py]
+      --- modify route_message(.) function
+          ---- extract from_user, to_user, and message from the message data
+          ---- route using the mapping of username and session_id from users dictionary 
+  
+- store chats in database
+""" think about design of database (sql vs nosql), latency, streaming, sync vs async application layer """ 
+
+- dockerize the app
+""" to read and understand """
+https://medium.com/@shamir.stav_83310/dockerizing-a-flask-mysql-app-with-docker-compose-c4f51d20b40d
+
+- redis in python
+""" to read and understand """
+https://redis.io/topics/introduction
+https://redislabs.com/lp/python-redis/
+https://www.objectrocket.com/blog/how-to/top-5-redis-use-cases/
+https://www.quora.com/Why-use-Redis-What-use-cases-is-it-good-for-and-why
+https://codeburst.io/redis-what-and-why-d52b6829813
+https://stackoverflow.com/questions/7535184/when-to-use-a-key-value-store-such-as-redis-instead-along-side-of-a-sql-database
+https://opensource.com/article/18/4/how-build-hello-redis-with-python
+http://oldblog.antirez.com/post/take-advantage-of-redis-adding-it-to-your-stack.html
