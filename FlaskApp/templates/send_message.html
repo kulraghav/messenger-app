@@ -14,25 +14,29 @@
       var socket = io('/login');
       var user = '{{name}}';
 
+      socket.emit('addUser', {username: '{{name}}'});
+
       function sendMessage() {
          var msg = document.getElementById('message').value;
-         console.log(document.getElementById('message').value)
+         var send_to = document.getElementById('send_to').value;
+        
          if(msg) {
-            socket.emit('messageFromUser', {message: msg, user: user});
+            socket.emit('messageFromUser', {message: msg, from_user: user, to_user: send_to});
          }
       }
 
       socket.on('messageFromServer', function(data) {
          if(user) {
             document.getElementById('message-container').innerHTML += '<div><b>' +
-               data.user + '</b>: ' + data.message + '</div>'
+               data.from_user + '</b>: ' + data.message + '</div>'
          }
       })
    </script>
 
    <body>
    <div id = "message-container"></div>
-   <input type = "text" id = "message">
+   <input type = "text" id = "message" value='Hello!'>
+   <input type = "text" id = "send_to" value= 'all'>
    <button type = "button" name = "button" onclick = "sendMessage()">Send</button>
    
    </body>

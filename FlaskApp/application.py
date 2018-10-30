@@ -60,11 +60,19 @@ def login():
         
         return render_template('login.html')
         
+@socketio.on('addUser', namespace='/login')
+def add_user(data):
+    session_id = request.sid
+    users[data['username']] = session_id
 
 @socketio.on('messageFromUser', namespace='/login')
-def receive_message(data):
-        print('Message: {} From: {}'.format(data['message'], data['user']))
+def route_message(data):
+    print('Message: {} From: {} To: {}'.format(data['message'], data['from_user'], data['to_user']))
+    if data['to_user'] == 'all':
         emit('messageFromServer', data, broadcast=True, namespace='/login')
+    else:
+        to_session_id = users[data['to_user']]
+	emit('messageFromServer', data, room=to_session_id, namespace='/login')
 
 if __name__ == '__main__':
         socketio.run(app)
