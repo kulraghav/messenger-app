@@ -5,8 +5,7 @@ Usage:
     Example 1:                                                                                                                                                                                              
     >> from database import execute_query                                                                                                                                                             
     >> my_query = "select id from users"                                                                                                                                                                    
-    >> execute_query(my_query)                                                                                                                                                                              
-                                                                                                                                                                                                            
+    >> execute_query(my_query)                                                                                                                                                                                                                                                                                                                                                                                          
 Last Update: 21 October 2018                                                                                                                                                                                            
 """
 
