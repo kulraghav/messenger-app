@@ -23,7 +23,7 @@
       --- modify route_message(.) function
           ---- extract from_user, to_user, and message from the message data
           ---- route using the mapping of username and session_id from users dictionary 
-  
+    
 - store chats in database
 """ think about design of database (sql vs nosql), latency, streaming, sync vs async application layer """ 
 
