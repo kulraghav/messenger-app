@@ -1,11 +1,11 @@
-CREATE TABLE users (                                                                                                                                                                                        
+CREATE TABLE IF NOT EXISTS users (                                                                                                                                                                                        
    user_id int(8) NOT NULL AUTO_INCREMENT,                                                                                                                                                                                          
    username varchar(255),
    password varchar(255),
    PRIMARY KEY (user_id)                                                                                                                                                                            
 );
 
-CREATE TABLE chats (                                                                                                                                                                                        
+CREATE TABLE IF NOT EXISTS chats (                                                                                                                                                                                        
    chat_id int(8) NOT NULL AUTO_INCREMENT,
    text  varchar(255),
    from_uid int(8),
