@@ -3,7 +3,7 @@
     Last Update: 27 October 2018
 """
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from flask_socketio import SocketIO, send, emit
 from database import execute_query
 app = Flask(__name__)
@@ -16,6 +16,13 @@ users = {}
 @app.route('/', methods=['GET'])
 def index():
         return render_template('index.html')
+
+@app.route('/users', methods=['GET'])
+def users():
+    query = "SELECT user_id, username FROM users"
+    users = execute_query(query)
+
+    return render_template('users.html', users=users)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
