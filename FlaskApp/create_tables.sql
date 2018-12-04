@@ -13,3 +13,11 @@ CREATE TABLE IF NOT EXISTS chats (
    created_at timestamp,
    PRIMARY KEY (chat_id)
 );
+
+CREATE TABLE IF NOT EXISTS rooms (                                                                                                                                                                                        
+   room_id int(8) NOT NULL AUTO_INCREMENT,
+   creator_id int(8),
+   participant int(8),
+   created_at timestamp,
+   PRIMARY KEY (chat_id)
+);
