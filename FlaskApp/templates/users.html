@@ -5,13 +5,10 @@
 
 <h1>Send message by clicking on a username</h1>
 <ol>
-  <li><a href="url">Alice</a></li>
-  <li><a href="url">Bob</a></li>
-  <li><a href="url">Charlie</a></li>
+	{% for user in users %}
+		<li><a href="url">{{ user[1] }}</a></li>
+	{% endfor %}
 </ol>
-
-
-
 
 
 </body>
