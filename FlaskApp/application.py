@@ -3,7 +3,7 @@
     Last Update: 27 October 2018
 """
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, redirect, url_for, request, jsonify
 from flask_socketio import SocketIO, send, emit
 from database import execute_query
 app = Flask(__name__)
@@ -60,7 +60,7 @@ def login():
 
 	if len(results) > 0:
             print "Login Successful"
-            return render_template("send_message.html", name=username)
+            return redirect(url_for("users"))
         else:
             print "Login Failed!!!"
     else:
